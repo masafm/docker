@@ -5,4 +5,4 @@ init_config:
 instances:
   - host: "%%env_JMX_HOST%%"
     port: "%%env_JMX_PORT%%"
-    name: "%%env_SERVICE_NAME%%_%%host%%"
+    name: "%%env_SERVICE_NAME%%_%%env_HOSTNAME%%"
