@@ -5,4 +5,4 @@ ENV DD_AGENT_HOST datadog-agent
 #RUN php datadog-setup.php --php-bin=all
 RUN mkdir -p /usr/share/nginx/html/
 COPY index.php /usr/share/nginx/html/
-RUN sed -i -e 's/;clear_env = no/clear_env = no/' /usr/local/etc/php-fpm.d/www.conf
+#RUN sed -i -e 's/;clear_env = no/clear_env = no/' /usr/local/etc/php-fpm.d/www.conf
