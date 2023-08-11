@@ -1,8 +1,8 @@
-FROM debian:stable-20230725
-RUN adduser --disabled-password --gecos "" selenium
+FROM ubuntu:23.04
+RUN useradd -m selenium
 WORKDIR /home/selenium
-RUN apt update -y && apt install -y python3 python3-pip python3-venv chromium chromium-driver git tightvncserver wm2 fonts-noto-cjk emacs
-RUN ln -s /usr/bin/chromium /usr/bin/chromium-browser
+RUN apt update -y && apt install -y python3 python3-pip python3-venv chromium-browser chromium-chromedriver git tightvncserver wm2 fonts-noto-cjk && apt clean
+RUN snap install chromium
 COPY --chown=selenium:selenium vnc ./.vnc
 USER selenium:selenium
 ENV USER selenium
