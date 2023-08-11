@@ -1,5 +1,4 @@
 #!/bin/bash
 export DISPLAY=:1.0
-export $(dbus-launch)
 vncserver :1 -geometry 1280x1200
-./Selenium-Automation/sbi.py "${KEY}" "${USER}" "${PASSWORD}"
+./Selenium-Automation/sbi.py --password2="${PASSWORD2}" "${KEY}" "${USER}" "${PASSWORD}"
