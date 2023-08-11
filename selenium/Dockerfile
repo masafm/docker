@@ -5,6 +5,7 @@ RUN apt update -y && apt install -y python3 python3-pip python3-venv chromium ch
 RUN ln -s /usr/bin/chromium /usr/bin/chromium-browser
 COPY --chown=selenium:selenium vnc ./.vnc
 USER selenium:selenium
+ENV USER selenium
 RUN mkdir ~/screenshot
 RUN git clone https://github.com/masafm/Selenium-Automation.git && cd Selenium-Automation && git checkout docker
 RUN python3 -m venv ~
