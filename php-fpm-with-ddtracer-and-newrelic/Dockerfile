@@ -1,7 +1,5 @@
 FROM php:8.0.11-fpm-bullseye
 
-ARG NR_VERSION=9.17.1.301
-
 RUN apt-get update && apt-get install -y \
     libfcgi0ldbl \
     libpng-dev \
@@ -43,6 +41,7 @@ RUN apt-get update && apt-get install -y \
         igbinary \
         redis
 
+ARG NR_VERSION=9.17.1.301
 RUN curl -L https://download.newrelic.com/php_agent/archive/${NR_VERSION}/newrelic-php5-${NR_VERSION}-linux.tar.gz | tar -C /tmp -zx \
     && export NR_INSTALL_USE_CP_NOT_LN=1 \
     && export NR_INSTALL_SILENT=1 \

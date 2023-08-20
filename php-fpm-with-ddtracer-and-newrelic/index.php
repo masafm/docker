@@ -1,6 +1,10 @@
 <?php
-for ($i = 1; $i <= 3; $i++) {
+for ($i = 1; $i <= 10; $i++) {
     // Access to Nginx status page
-    var_dump(file_get_contents("http://localhost:81/"));
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "http://localhost:81/");
+    $res =  curl_exec($ch);
+    curl_close($ch);
+    var_dump($res);
 }
 ?>
