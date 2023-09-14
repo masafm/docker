@@ -3,11 +3,20 @@ services:
   nginx:
     build:
       context: nginx
+      args:
+        image: "nginx:1.25.2-alpine"
       dockerfile: Dockerfile
     ports:
-      - 1080:80
+      - 11080:80
 
   php-fpm:
     build:
       context: .
+      args:
+        image: "php:8.1.23-fpm-bullseye"
       dockerfile: Dockerfile
+
+networks:
+  default:
+    name: datadog
+    external: true

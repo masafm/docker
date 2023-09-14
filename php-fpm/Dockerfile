@@ -1,6 +1,8 @@
-FROM php:8.1.12-fpm-bullseye
+ARG image="php:8.1.12-fpm-bullseye"
+FROM ${image}
+ARG image="php:8.1.12-fpm-bullseye" #need to specify again after FROM
 ENV DD_AGENT_HOST dd-agent
-#RUN curl -LO https://github.com/DataDog/dd-trace-php/releases/latest/download/datadog-setup.php
-#RUN php datadog-setup.php --php-bin=all --enable-profiling
+RUN curl -LO https://github.com/DataDog/dd-trace-php/releases/latest/download/datadog-setup.php
+RUN php datadog-setup.php --php-bin=all --enable-profiling
 RUN mkdir -p /usr/share/nginx/html/
 COPY index.php /usr/share/nginx/html/
