@@ -11,7 +11,7 @@ services:
       - 11080:80
 
   php-fpm:
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:with-ddtracer-5
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:with-ddtracer-6
     build:
       context: .
       args:
