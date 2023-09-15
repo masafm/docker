@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   nginx:
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:3
     build:
       context: nginx
       args:
@@ -10,6 +11,7 @@ services:
       - 11080:80
 
   php-fpm:
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:with-ddtracer-5
     build:
       context: .
       args:
