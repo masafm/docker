@@ -4,6 +4,7 @@ services:
     image: datadog/agent:latest
     environment:
       - DD_API_KEY
+      - DD_HOSTNAME=docker
       - DD_APM_ENABLED=true
       - DD_APM_NON_LOCAL_TRAFFIC=true
       - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
