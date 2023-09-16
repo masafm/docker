@@ -6,6 +6,6 @@ ENV DD_ENV dev
 ENV DD_SERVICE my-php-fpm
 ENV DD_VERSION 1.0
 RUN curl -LO https://github.com/DataDog/dd-trace-php/releases/latest/download/datadog-setup.php
-RUN php datadog-setup.php --php-bin=all --enable-profiling
+RUN php datadog-setup.php --php-bin=all --enable-profiling --enable-appsec
 RUN mkdir -p /usr/share/nginx/html/
 COPY index.php /usr/share/nginx/html/
