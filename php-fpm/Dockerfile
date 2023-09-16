@@ -1,7 +1,7 @@
 ARG image="php:8.1.12-fpm-bullseye"
 FROM ${image}
 ARG image="php:8.1.12-fpm-bullseye" #need to specify again after FROM
-ENV DD_AGENT_HOST dd-agent
+#ENV DD_AGENT_HOST dd-agent
 ENV DD_ENV dev
 ENV DD_SERVICE my-php-fpm
 ENV DD_VERSION 1.0

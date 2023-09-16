@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 11080:80
+    environment:
+      - DD_AGENT_HOST=datadog-agent
 
   php-fpm:
     build:
@@ -17,6 +19,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - CURL_COUNT=1
+      - DD_AGENT_HOST=datadog-agent
 
 networks:
   default:
