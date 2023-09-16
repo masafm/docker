@@ -2,6 +2,9 @@ version: '3.7'
 services:
   datadog-agent:
     image: datadog/agent:latest
+    ports:
+      - 18125:8125/udp
+      - 18126:8126/tcp
     environment:
       - DD_API_KEY
       - DD_HOSTNAME=docker
