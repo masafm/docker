@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  snmp:
+    container_name: snmp
+    image: "tandrup/snmpsim:latest"
+    ports:
+      - "161:161/udp"
+    volumes:
+      - ./data/:/usr/local/share/snmpsim/data
+#    logging:
+#      driver: "syslog"
+#      options:
+#        syslog-facility: daemon
+#        tag: container/{{.Name}}/{{.ID}}
+#        syslog-address: "udp:/localhost:514"
+
+networks:
+  default:
+    name: datadog
+    external: true
