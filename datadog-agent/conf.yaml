@@ -1,8 +1,0 @@
-init_config:
-  is_jmx: true
-  collect_default_metrics: true
-
-instances:
-  - host: "%%env_JMX_HOST%%"
-    port: "%%env_JMX_PORT%%"
-    name: "%%env_SERVICE_NAME%%_%%env_HOSTNAME%%"

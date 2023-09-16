@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  apache-bench:
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/apache-bench:1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - AB_TARGET=nginx
+      - AB_CONCURRENCY=4
+      - AB_REQUESTS=10000
+      
+networks:
+  default:
+    name: datadog
+    external: true
