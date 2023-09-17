@@ -4,7 +4,7 @@ services:
     build:
       context: nginx
       args:
-        image: "nginx:1.25.2-alpine"
+        image: nginx:1.25.2-alpine
       dockerfile: Dockerfile
     ports:
       - 11080:80
@@ -16,7 +16,7 @@ services:
     build:
       context: .
       args:
-        image: "php:8.1.23-fpm-bullseye"
+        image: php:8.1.23-fpm-bullseye
       dockerfile: Dockerfile
     environment:
       - CURL_TARGET_URL
