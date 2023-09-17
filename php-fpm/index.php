@@ -1,6 +1,6 @@
 <?php
 $count = getenv('CURL_COUNT');
-$url = getenv('CURL_TARGET_URL') ? getenv('CURL_TARGET_URL') : 'http://localhost:81/nginx_status';
+$url = getenv('CURL_TARGET_URL') ? getenv('CURL_TARGET_URL') : 'http://nginx:81/nginx_status';
 $count = $count ? $count : 10;
 for ($i = 1; $i <= $count; $i++) {
     $ch = curl_init();
