@@ -18,6 +18,7 @@ services:
         image: "php:8.1.23-fpm-bullseye"
       dockerfile: Dockerfile
     environment:
+      - CURL_TARGET_URL
       - CURL_COUNT=1
       - DD_AGENT_HOST=datadog-agent
 
