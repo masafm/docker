@@ -3,7 +3,6 @@ $count = getenv('CURL_COUNT');
 $url = getenv('CURL_TARGET_URL') ? getenv('CURL_TARGET_URL') : 'http://localhost:81/nginx_status';
 $count = $count ? $count : 10;
 for ($i = 1; $i <= $count; $i++) {
-    // Access to Nginx status page
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     $res =  curl_exec($ch);
