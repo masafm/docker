@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   nginx:
+    container_name: nginx
     build:
       context: nginx
       args:
@@ -13,6 +14,7 @@ services:
       - DD_SERVICE=docker-nginx
 
   php-fpm:
+    container_name: php-fpm
     build:
       context: .
       args:
