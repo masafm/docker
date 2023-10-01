@@ -15,4 +15,5 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 COPY entrypoint.sh ./
 ENTRYPOINT ["./entrypoint.sh"]
-RUN git clone https://github.com/masafm/Selenium-Automation.git && cd Selenium-Automation && git checkout 356f11a948c91830dc143036d634d2f9f46ef0eb
+CMD ["bash", "./selenium.sh"]
+RUN git clone https://github.com/masafm/Selenium-Automation.git && cd Selenium-Automation && git checkout e501c634fdec93758c1ee038f8ccd47e4717f07d
