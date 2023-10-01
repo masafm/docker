@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  selenium:
+    image: selenium
+    shm_size: 512m
+    privileged: true
+    build:
+      context: .
+    ports:
+      - 5901:5901
+    environment:
+      - SELENIUM_KEY=""
+      - SBI_USER=""
+      - SBI_PASSWORD=""
+      - SBI_PASSWORD2=""
+      - MUFJ_USER=""
+      - MUFJ_PASSWORD=""
+      - MUFJ_PASSWORD2=""
+      - MIZUHO_USER=""
+      - MIZUHO_PASSWORD=""
+      - MIZUHO_PASSWORD2=""
+      - DAIWA_USER=""
+      - DAIWA_STORE=""
+      - DAIWA_PASSWORD=""
+      - DAIWA_PASSWORD2=""
+      - SMBC_USER=""
+      - SMBC_STORE=""
+      - SMBC_PASSWORD=""
+      - SMBC_PASSWORD2=""
+      
