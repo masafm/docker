@@ -8,6 +8,8 @@ services:
       context: .
     ports:
       - 5901:5901
+    environment:
+      - PASS
     volumes:
       - ./Selenium-Automation:/home/selenium/Selenium-Automation
       - ./selenium.sh:/home/selenium/selenium.sh
