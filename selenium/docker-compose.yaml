@@ -9,5 +9,6 @@ services:
     ports:
       - 5901:5901
     volumes:
+      - ./Selenium-Automation:/home/selenium/Selenium-Automation
       - ./selenium.sh:/home/selenium/selenium.sh
       - ./client_secret.json:/home/selenium/client_secret.json
