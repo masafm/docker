@@ -7,6 +7,10 @@ services:
       - "161:161/udp"
     volumes:
       - ./data/:/usr/local/share/snmpsim/data
+    command:
+      - /bin/sh
+      - -c
+      - snmpsimd.py --agent-udpv4-endpoint=0.0.0.0:161 --process-user=snmpsim --process-group=nogroup 2>&1
 #    logging:
 #      driver: "syslog"
 #      options:
