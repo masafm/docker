@@ -11,7 +11,7 @@ services:
       - 11080:80
     environment:
       - DD_AGENT_HOST=datadog-agent
-      - DD_SERVICE=docker-nginx
+      - DD_SERVICE=nginx
 
   php-fpm:
     container_name: php-fpm
@@ -24,7 +24,7 @@ services:
       - CURL_TARGET_URL
       - CURL_COUNT=1
       - DD_AGENT_HOST=datadog-agent
-      - DD_SERVICE=docker-php-fpm
+      - DD_SERVICE=php-fpm
     command:
       - /bin/sh
       - -c
