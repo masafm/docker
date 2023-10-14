@@ -8,7 +8,8 @@ services:
         image: nginx:1.25.2-alpine
       dockerfile: Dockerfile
     ports:
-      - 11080:80
+      - 81:81
+      - 82:80
     environment:
       - DD_AGENT_HOST=datadog-agent
       - DD_SERVICE=nginx
