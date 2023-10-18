@@ -8,6 +8,7 @@ USER selenium:selenium
 ENV USER selenium
 RUN echo "$VNCPASSWORD" | vncpasswd -f > .vnc/passwd
 RUN chmod 600 .vnc/passwd
+RUN touch .Xauthority
 RUN mkdir ~/screenshot
 RUN python3 -m venv ~
 ENV PATH /home/selenium/bin:$PATH
