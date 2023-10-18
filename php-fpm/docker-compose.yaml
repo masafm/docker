@@ -12,11 +12,7 @@ services:
       - 82:80
     environment:
       - DD_AGENT_HOST=datadog-agent
-<<<<<<< HEAD
-      - DD_SERVICE=docker-nginx
-=======
       - DD_SERVICE=nginx
->>>>>>> refs/remotes/origin/main
 
   php-fpm:
     container_name: php-fpm
