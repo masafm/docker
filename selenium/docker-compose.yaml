@@ -9,7 +9,7 @@ services:
     ports:
       - 5901:5901
     environment:
-      - PASS
+      - KEY
     volumes:
       - ./Selenium-Automation:/home/selenium/Selenium-Automation
       - ./selenium.sh:/home/selenium/selenium.sh
