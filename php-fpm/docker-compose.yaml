@@ -8,10 +8,15 @@ services:
         image: nginx:1.25.2-alpine
       dockerfile: Dockerfile
     ports:
-      - 11080:80
+      - 81:81
+      - 82:80
     environment:
       - DD_AGENT_HOST=datadog-agent
+<<<<<<< HEAD
       - DD_SERVICE=docker-nginx
+=======
+      - DD_SERVICE=nginx
+>>>>>>> refs/remotes/origin/main
 
   php-fpm:
     container_name: php-fpm
@@ -24,7 +29,15 @@ services:
       - CURL_TARGET_URL
       - CURL_COUNT=1
       - DD_AGENT_HOST=datadog-agent
+<<<<<<< HEAD
       - DD_SERVICE=docker-php-fpm
+=======
+      - DD_SERVICE=php-fpm
+    command:
+      - /bin/sh
+      - -c
+      - php-fpm 2>&1
+>>>>>>> refs/remotes/origin/main
 
 networks:
   default:
