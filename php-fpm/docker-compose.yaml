@@ -26,6 +26,8 @@ services:
       - CURL_COUNT=1
       - DD_AGENT_HOST=datadog-agent
       - DD_SERVICE=php-fpm
+    volumes:
+      - ./src:/usr/share/nginx/html/
     command:
       - /bin/sh
       - -c
