@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  jmx-test:
+    container_name: jmx-test
+    build:
+      context: .
+#      args:
+#        image: gradle:8.5.0-jdk17-focal
+      dockerfile: Dockerfile
+    environment:
+      - TARGET_URL=http://www.datadoghq.com/
+      - DD_AGENT_HOST=datadog-agent
+    labels:
+      com.datadoghq.ad.logs: >-
+        [{"source": "java", "service": "jmx-test"}]
+
+networks:
+  default:
+    name: datadog
+    external: true
