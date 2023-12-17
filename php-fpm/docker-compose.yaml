@@ -19,7 +19,8 @@ services:
     build:
       context: .
       args:
-        image: php:8.1.23-fpm-bullseye
+#        image: php:8.1.23-fpm-bullseye
+        image: php:7.4.33-fpm-bullseye
       dockerfile: Dockerfile
     environment:
       - CURL_TARGET_URL
