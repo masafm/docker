@@ -1,20 +1,23 @@
 version: '3.7'
 services:
   jmx-test:
-    container_name: jmx-test
     build:
       context: .
-#      args:
-#        image: gradle:8.5.0-jdk17-focal
-      dockerfile: Dockerfile
     environment:
-      - TARGET_URL=http://www.datadoghq.com/
+      - TARGET_URL
       - DD_AGENT_HOST=datadog-agent
     labels:
       com.datadoghq.ad.logs: >-
         [{"source": "java", "service": "jmx-test"}]
-
-networks:
-  default:
-    name: datadog
-    external: true
+  datadog-agent:
+    image: datadog/agent:latest
+    environment:
+      - DD_API_KEY
+      - DD_HOSTNAME
+      - DD_APM_ENABLED=true
+      - DD_LOGS_ENABLED=true
+      - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
+      - DD_PROCESS_AGENT_ENABLED=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
