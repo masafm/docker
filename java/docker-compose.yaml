@@ -4,6 +4,7 @@ services:
     container_name: jmx-test
     build:
       context: .
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/jmx-test:20231219-1
     environment:
       - TARGET_URL
       - DD_AGENT_HOST=datadog-agent
