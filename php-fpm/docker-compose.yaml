@@ -2,6 +2,7 @@ version: '3.7'
 services:
   nginx:
     container_name: nginx
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20231220-2
     build:
       context: nginx
       args:
@@ -13,14 +14,16 @@ services:
     environment:
       - DD_AGENT_HOST=datadog-agent
       - DD_SERVICE=nginx
+    labels:
+      com.datadoghq.ad.checks: '{"nginx": {"instances": [{"nginx_status_url": "http://nginx:81/nginx_status/"}]}}'
 
   php-fpm:
     container_name: php-fpm
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:20231220-1
     build:
       context: .
       args:
-#        image: php:8.1.23-fpm-bullseye
-        image: php:7.4.33-fpm-bullseye
+        image: php:8.1.23-fpm-bullseye
       dockerfile: Dockerfile
     environment:
       - CURL_TARGET_URL
@@ -29,10 +32,10 @@ services:
       - DD_SERVICE=php-fpm
     volumes:
       - ./src:/usr/share/nginx/html/
-    command:
-      - /bin/sh
-      - -c
-      - php-fpm 2>&1
+    # command:
+    #   - /bin/sh
+    #   - -c
+    #   - php-fpm 2>&1
 
 networks:
   default:
