@@ -5,8 +5,10 @@ ARG image="nginx:1.19.0-alpine" #need to specify again after FROM
 ENV DD_ENV dev
 ENV DD_SERVICE my-nginx
 ENV DD_VERSION 1.0
+ENV PHP_FPM_ADDR php-fpm:9000
 #LABEL "com.datadoghq.ad.checks"='{"nginx": {"instances": [{"nginx_status_url": "http://nginx:81/nginx_status/"}]}}'
-COPY default.conf /etc/nginx/conf.d/
+#COPY default.conf /etc/nginx/conf.d/
+COPY default.conf.template /etc/nginx/templates/
 COPY status.conf /etc/nginx/conf.d/
 COPY install-dd-module.sh /
 RUN apk --no-cache add jq wget tar curl

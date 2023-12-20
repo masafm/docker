@@ -2,7 +2,7 @@ version: '3.7'
 services:
   nginx:
     container_name: nginx
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20231220-2
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20231220-3
     build:
       context: nginx
       args:
