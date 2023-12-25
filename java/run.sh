@@ -5,7 +5,8 @@ if [[ $1 == clean ]];then
 fi
 
 if [[ ! -d src ]];then
-    (git clone https://github.com/masafm/java.git src; cd src/jmx-test; git checkout gradle)
+    #(git clone https://github.com/masafm/java.git src; cd src/jmx-test; git checkout main) #latest
+    (git clone https://github.com/masafm/java.git src; cd src/jmx-test; git checkout aeedbda889ba83a90a3879ffec53df75d5220fec) #stable
 fi
 
 if [[ ! -f dd-java-agent.jar ]];then
