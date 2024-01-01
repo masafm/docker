@@ -1,16 +1,16 @@
 version: '3.7'
 services:
-  jmx-test:
-    container_name: jmx-test
+  tomcat:
+    container_name: tomcat
     build:
       context: .
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/jmx-test:20231219-1
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/tomcat:20231219-1
     environment:
-      - TARGET_URL=http://tomcat:8080/sb
+#      - TARGET_URL=https://www.datadoghq.com/
       - DD_AGENT_HOST=datadog-agent
     labels:
       com.datadoghq.ad.logs: >-
-        [{"source": "java", "service": "jmx-test"}]
+        [{"source": "java", "service": "tomcat"}]
   # datadog-agent:
   #   image: datadog/agent:latest
   #   environment:
