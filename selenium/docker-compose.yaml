@@ -5,14 +5,14 @@ services:
     shm_size: 512m
     build:
       context: .
-    ports:
-      - 5901:5901
+#    ports:
+#      - 5901:5901
     environment:
       - KEY
+#    privileged: true
     cap_add:
       - SYS_ADMIN
     volumes:
       - ./Selenium-Automation:/home/selenium/Selenium-Automation
       - ./selenium.sh:/home/selenium/selenium.sh
 #      - ./client_secret.json:/home/selenium/client_secret.json
-#    privileged: true
