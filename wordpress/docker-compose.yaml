@@ -1,37 +1,52 @@
 version: '3.1'
 
 services:
-
   wordpress:
-    image: my-wordpress
+    container_name: wordpress
+    image: wordpress
     build:
       context: wordpress
+      args:
+        image: wordpress:php8.3-apache
       dockerfile: Dockerfile
     restart: always
     ports:
       - 8082:80
     environment:
-      WORDPRESS_DB_HOST: masafumi-kashiwagi-aurora-mysql-instance-1-ap-northeast-1a.c3bw7kcbozbg.ap-northeast-1.rds.amazonaws.com
+      WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
-#     volumes:
-#       - wordpress:/var/www/html
+      DD_AGENT_HOST: datadog-agent
+      DD_SERVICE: wordpress
+      DD_ENV: dev
+      DD_VERSION: 2.0
+    volumes:
+      - ./wordpress/status.conf:/etc/apache2/mods-available/status.conf
+      - ./wordpress/htaccess:/usr/src/wordpress/.htaccess
+      - wordpress:/var/www/html
+    labels:
+      com.datadoghq.ad.checks: '{"apache": {"instances": [{"apache_status_url": "http://wordpress/server-status?auto"}]}}'
+  db:
+    container_name: wordpress_db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      # MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_ALLOW_EMPTY_PASSWORD: '1'
+    volumes:
+      - ./mysql/default.sql:/docker-entrypoint-initdb.d/default.sql
+      - ./mysql/my.cnf:/etc/my.cnf
+      - db:/var/lib/mysql
+    labels:
+      com.datadoghq.ad.checks: '{"mysql": {"instances": [{"dbm": "true", "host": "wordpress_db", "port": "3306", "username": "datadog", "password": "datadog"}]}}'
 
-#   db:
-#     image: mysql:5.7
-#     restart: always
-#     environment:
-#       MYSQL_DATABASE: exampledb
-#       MYSQL_USER: exampleuser
-#       MYSQL_PASSWORD: examplepass
-#       MYSQL_RANDOM_ROOT_PASSWORD: '1'
-#     volumes:
-#       - db:/var/lib/mysql
-
-# volumes:
-#   wordpress:
-#   db:
+volumes:
+  wordpress:
+  db:
 
 networks:
   default:
