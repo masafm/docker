@@ -1,6 +1,6 @@
-ARG image="datadog/agent:7.48.1"
+ARG image
 FROM ${image}
-ARG image="datadog/agent:7.48.1" #need to specify again after FROM
+ARG image
 #COPY conf.d/mysql.d/conf.yaml /etc/datadog-agent/conf.d/mysql.d/
 # LABEL "com.datadoghq.ad.check_names"='["mysql","mysql"]'
 # LABEL "com.datadoghq.ad.init_configs"='[{},{}]'

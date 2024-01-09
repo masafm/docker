@@ -2,7 +2,10 @@ version: '3.7'
 services:
   datadog-agent:
     container_name: datadog-agent
+    image: my-datadog-agent:7.50.1
     build:
+      args:
+        image: datadog/agent:7.50.1
       context: .
       dockerfile: Dockerfile
     #image: datadog/agent:latest
@@ -22,7 +25,7 @@ services:
       - DD_PROCESS_AGENT_ENABLED=true
       - DD_SYSTEM_PROBE_NETWORK_ENABLED=true
     volumes:
-      - /opt/datadog/apm:/opt/datadog/apm
+#      - /opt/datadog/apm:/opt/datadog/apm
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /proc/:/host/proc/:ro
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
