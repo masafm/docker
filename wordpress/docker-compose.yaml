@@ -21,6 +21,7 @@ services:
       DD_SERVICE: wordpress
       DD_ENV: dev
       DD_VERSION: 2.0
+      DD_DBM_PROPAGATION_MODE: full
     volumes:
       - ./wordpress/status.conf:/etc/apache2/mods-available/status.conf
       - ./wordpress/htaccess:/usr/src/wordpress/.htaccess
