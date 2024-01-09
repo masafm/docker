@@ -1,7 +1,7 @@
 #!/bin/sh
 c=4
 n=10000
-t=localhost
+t=http://localhost/
 
 if [ -n "${AB_CONCURRENCY}" ];then
     c=${AB_CONCURRENCY}
@@ -14,7 +14,7 @@ if [ -n "${AB_TARGET}" ];then
 fi
 
 while true;do
-    cmd="ab -c $c -n $n http://${t}/"
+    cmd="ab -c $c -n $n ${t}"
     echo "Start $cmd"
     $cmd
     echo "Done $cmd"
