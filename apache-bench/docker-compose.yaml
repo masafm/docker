@@ -1,6 +1,8 @@
 version: '3.7'
 services:
   apache-bench:
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/apache-bench:20240118
+    container_name: apache-bench
     build:
       context: .
       dockerfile: Dockerfile
