@@ -4,25 +4,15 @@ services:
     container_name: tomcat
     build:
       context: .
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/tomcat:20231219-1
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/tomcat:20240118
     environment:
-#      - TARGET_URL=https://www.datadoghq.com/
+      - TARGET_URL=http://nginx/
       - DD_AGENT_HOST=datadog-agent
+    ports:
+      - 8083:8080
     labels:
       com.datadoghq.ad.logs: >-
         [{"source": "java", "service": "tomcat"}]
-  # datadog-agent:
-  #   image: datadog/agent:latest
-  #   environment:
-  #     - DD_API_KEY
-  #     - DD_HOSTNAME
-  #     - DD_APM_ENABLED=true
-  #     - DD_LOGS_ENABLED=true
-  #     - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
-  #     - DD_PROCESS_AGENT_ENABLED=true
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-  #     - /var/lib/docker/containers:/var/lib/docker/containers:ro
 
 networks:
   default:
