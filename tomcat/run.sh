@@ -21,4 +21,4 @@ docker run --rm -u gradle \
        -e DD_AGENT_HOST=datadog-agent \
        -l com.datadoghq.ad.logs="[{\"source\": \"java\", \"service\": \"tomcat\"}]" \
        gradle:8.5.0-jdk17-focal \
-       gradle build run
+       gradle build bootRun
