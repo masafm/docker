@@ -8,5 +8,5 @@ RUN gradle war
 FROM tomcat:10-jdk17
 COPY --from=builder /home/gradle/src/tomcat/app/build/libs/app-plain.war /usr/local/tomcat/webapps/ROOT.war
 RUN curl -o dd-java-agent.jar https://repo1.maven.org/maven2/com/datadoghq/dd-java-agent/1.25.1/dd-java-agent-1.25.1.jar
-ENV JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=9012 -Dcom.sun.management.jmxremote.authenticate=false -javaagent:/usr/local/tomcat/dd-java-agent.jar -Ddd.profiling.enabled=true -XX:FlightRecorderOptions=stackdepth=256 -Ddd.logs.injection=true -Ddd.trace.debug=false -Ddd.service=tomcat -Ddd.env=dev -Ddd.version=2.0"
+ENV JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=9012 -Dcom.sun.management.jmxremote.authenticate=false -javaagent:/usr/local/tomcat/dd-java-agent.jar -Ddd.profiling.enabled=true -XX:FlightRecorderOptions=stackdepth=256 -Ddd.logs.injection=true"
 ENV TARGET_URL http://localhost/

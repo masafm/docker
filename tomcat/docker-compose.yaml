@@ -6,11 +6,17 @@ services:
       context: .
     image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/tomcat:20240118
     environment:
-      - TARGET_URL=http://nginx/
-      - DD_AGENT_HOST=datadog-agent
+      TARGET_URL: http://nginx/
+      DD_AGENT_HOST: datadog-agent
+      DD_SERVICE: tomcat
+      DD_ENV: dev
+      DD_VERSION: 2.0
+      DD_TRACE_DEBUG: false
     ports:
       - 8083:8080
     labels:
+      com.datadoghq.ad.checks: >-
+        {"tomcat": {"init_config": {"is_jmx": true, "collect_default_metrics": true, "new_gc_metrics": true}, "instances": [{"host": "tomcat", "port": 9012}]}}
       com.datadoghq.ad.logs: >-
         [{"source": "java", "service": "tomcat"}]
 
