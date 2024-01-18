@@ -26,7 +26,7 @@ services:
     command:
     - sh
     - -c
-    - yes | kafka-console-producer --topic quickstart-events1 --bootstrap-server $${KAFKA_ADDR}
+    - for i in $$(seq 1 1000);do echo $$i;done | kafka-console-producer --topic quickstart-events1 --bootstrap-server $${KAFKA_ADDR}
   kafka-consumer:
     image: confluentinc/cp-kafka
     container_name: kafka-consumer
@@ -37,7 +37,7 @@ services:
     command:
     - sh
     - -c
-    - kafka-console-consumer --topic quickstart-events1 --bootstrap-server $${KAFKA_ADDR} --from-beginning --group consumer-group1 >/dev/null
+    - kafka-console-consumer --topic quickstart-events1 --bootstrap-server $${KAFKA_ADDR} --from-beginning --group consumer-group1
   zookeeper:
     image: confluentinc/cp-zookeeper
     container_name: zookeeper
