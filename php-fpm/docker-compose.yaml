@@ -2,7 +2,7 @@ version: '3.7'
 services:
   nginx:
     container_name: nginx
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20231220-3
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20240118
     build:
       context: nginx
       args:
@@ -12,14 +12,16 @@ services:
       - 81:81
       - 82:80
     environment:
+      - PHP_FPM_ADDR=php-fpm:9000
       - DD_AGENT_HOST=datadog-agent
       - DD_SERVICE=nginx
+      - DD_ENV=dev
+      - DD_VERSION=1.0
     labels:
       com.datadoghq.ad.checks: '{"nginx": {"instances": [{"nginx_status_url": "http://nginx:81/nginx_status/"}]}}'
-
   php-fpm:
     container_name: php-fpm
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:20231220-1
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:20240118
     build:
       context: .
       args:
@@ -30,12 +32,10 @@ services:
       - CURL_COUNT=1
       - DD_AGENT_HOST=datadog-agent
       - DD_SERVICE=php-fpm
+      - DD_ENV=dev
+      - DD_VERSION=1.0
     volumes:
       - ./src:/usr/share/nginx/html/
-    # command:
-    #   - /bin/sh
-    #   - -c
-    #   - php-fpm 2>&1
 
 networks:
   default:
