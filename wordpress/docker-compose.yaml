@@ -24,10 +24,9 @@ services:
       DD_DBM_PROPAGATION_MODE: full
     volumes:
       - ./wordpress/status.conf:/etc/apache2/mods-available/status.conf
-      - ./wordpress/htaccess:/usr/src/wordpress/.htaccess
       - wordpress:/var/www/html
-    # labels:
-    #   com.datadoghq.ad.checks: '{"apache": {"instances": [{"apache_status_url": "http://wordpress:80/server-status?auto"}]}}'
+    labels:
+      com.datadoghq.ad.checks: '{"apache": {"instances": [{"apache_status_url": "http://wordpress/server-status?auto"}]}}'
   db:
     container_name: wordpress_db
     image: mysql:8.0
