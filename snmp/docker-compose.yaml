@@ -2,7 +2,12 @@ version: '3.7'
 services:
   snmp:
     container_name: snmp
-    image: "tandrup/snmpsim:latest"
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/snmp:20240118
+    build:
+      context: .
+      args:
+        image: tandrup/snmpsim:latest
+      dockerfile: Dockerfile
     ports:
       - "161:161/udp"
     volumes:

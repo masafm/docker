@@ -3,7 +3,7 @@ version: '3.1'
 services:
   wordpress:
     container_name: wordpress
-    image: wordpress
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/wordpress:20240118
     build:
       context: wordpress
       args:
@@ -29,7 +29,12 @@ services:
       com.datadoghq.ad.checks: '{"apache": {"instances": [{"apache_status_url": "http://wordpress/server-status?auto"}]}}'
   db:
     container_name: wordpress_db
-    image: mysql:8.0
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/wordpress_db:20240118
+    build:
+      context: mysql
+      args:
+        image: mysql:8.0
+      dockerfile: Dockerfile
     restart: always
     environment:
       MYSQL_DATABASE: wordpress

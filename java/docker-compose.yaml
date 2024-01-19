@@ -4,7 +4,7 @@ services:
     container_name: jmx-test
     build:
       context: .
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/jmx-test:20231219-1
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/jmx-test:20240118
     environment:
       - TARGET_URL=http://tomcat:8080/sb
       - DD_AGENT_HOST=datadog-agent
