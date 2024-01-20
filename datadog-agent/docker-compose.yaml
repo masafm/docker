@@ -2,10 +2,11 @@ version: '3.7'
 services:
   datadog-agent:
     container_name: datadog-agent
-    image: datadog/agent:latest
+    # image: datadog/agent:latest
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/datadog-agent:20240118
     build:
       args:
-        image: datadog/agent:7.50.1-jmx
+        image: datadog/agent:7.50.3-jmx
       context: .
       dockerfile: Dockerfile
     ports:
