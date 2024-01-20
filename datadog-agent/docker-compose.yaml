@@ -2,8 +2,7 @@ version: '3.7'
 services:
   datadog-agent:
     container_name: datadog-agent
-    #image: datadog/agent:latest
-    image: my-datadog-agent:7.50.1-jmx
+    image: datadog/agent:latest
     build:
       args:
         image: datadog/agent:7.50.1-jmx
