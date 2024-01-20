@@ -9,7 +9,7 @@ services:
       TARGET_URL: http://nginx/
       DD_AGENT_HOST: datadog-agent
       DD_SERVICE: tomcat
-      DD_ENV: dev
+      DD_ENV: docker
       DD_VERSION: 2.0
       DD_TRACE_DEBUG: "false"
     ports:
