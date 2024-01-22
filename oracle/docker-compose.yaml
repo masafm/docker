@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  oracle:
+    container_name: oracle
+    build:
+      context: .
+      args:
+        image: oraclelinux:8
+      dockerfile: Dockerfile
+
+networks:
+  default:
+    name: datadog
+    external: true
