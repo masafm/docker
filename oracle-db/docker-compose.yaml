@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  oracle:
+    container_name: oracle-db
+    image: container-registry.oracle.com/database/express:21.3.0-xe
+    environment:
+      - ORACLE_PWD=password
+    labels:
+      com.datadoghq.ad.checks: '{"oracle": {"instances": [{"server": "oracle:1521", "service_name": "XE", "username": "datadog", "password": "datadog", "jdbc_driver_path": "/opt/ojdbc.jar"}]}}'
+    volumes:
+      - ./startup_script:/opt/oracle/scripts/startup
+      
+networks:
+  default:
+    name: datadog
+    external: true
