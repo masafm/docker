@@ -6,7 +6,7 @@ services:
     environment:
       - ORACLE_PWD=password
     labels:
-      com.datadoghq.ad.checks: '{"oracle": {"instances": [{"server": "oracle:1521", "service_name": "XE", "username": "datadog", "password": "datadog", "jdbc_driver_path": "/opt/ojdbc.jar"}]}}'
+      com.datadoghq.ad.checks: '{"oracle": {"instances": [{"server": "oracle:1521", "service_name": "XE", "username": "datadog", "password": "datadog", "jdbc_driver_path": "/opt/oracle/instantclient_21_13/ojdbc11.jar"}]}}'
     volumes:
       - ./startup_script:/opt/oracle/scripts/startup
       
