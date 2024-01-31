@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=P@ssw0rd
+    labels:
+      com.datadoghq.ad.checks: '{"sqlserver": {"instances": [{"dbm": true, "host": "sqlserver,1433", "username": "datadog", "password": "P@ssw0rd", "connector": "odbc", "driver": "ODBC Driver 18 for SQL Server", "dsn": "datadog"}]}}'
+  sqlserver-client:
+    container_name: sqlserver-client
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=P@ssw0rd
+    depends_on:
+      - sqlserver
+    entrypoint: /datadog/setup.sh
+    volumes:
+      - ./datadog:/datadog
+      
+networks:
+  default:
+    name: datadog
+    external: true
