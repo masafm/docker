@@ -4,7 +4,7 @@ services:
     container_name: tomcat
     build:
       context: .
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/tomcat:20240118
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/tomcat:20240201
     environment:
       TARGET_URL: http://nginx/
       DD_AGENT_HOST: datadog-agent

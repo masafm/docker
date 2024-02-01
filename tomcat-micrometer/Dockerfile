@@ -3,6 +3,8 @@ RUN apt update -y && apt install -y curl git && apt clean
 #RUN git clone https://github.com/masafm/java.git /home/gradle/src; cd src/tomcat; git checkout main #latest
 RUN git clone https://github.com/masafm/java.git /home/gradle/src; cd src/tomcat; git checkout micrometer #stable
 WORKDIR /home/gradle/src/tomcat
+COPY log4j2.xml /home/gradle/src/tomcat/app/src/main/resources/
+COPY logback.xml /home/gradle/src/tomcat/app/src/main/resources/
 RUN gradle war
 
 FROM tomcat:10-jdk17
