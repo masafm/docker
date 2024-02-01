@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  tomcat-micrometer:
+    container_name: tomcat-micrometer
+    build:
+      context: .
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/tomcat-micrometer:20240118
+    environment:
+      TARGET_URL: http://nginx/
+      DD_AGENT_HOST: datadog-agent
+      DD_SERVICE: tomcat-micrometer
+      DD_ENV: docker
+      DD_VERSION: 2.0
+      DD_TRACE_DEBUG: "false"
+    ports:
+      - 9090:9090
+    # labels:
+    #   com.datadoghq.ad.checks: >-
+    #     {"tomcat": {"init_config": {"is_jmx": true, "collect_default_metrics": true, "new_gc_metrics": true}, "instances": [{"host": "tomcat-micrometer", "port": 9012}]}}
+    #   com.datadoghq.ad.logs: >-
+    #     [{"source": "java", "service": "tomcat"}]
+
+networks:
+  default:
+    name: datadog
+    external: true
