@@ -7,7 +7,9 @@ services:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=P@ssw0rd
     labels:
-      com.datadoghq.ad.checks: '{"sqlserver": {"instances": [{"dbm": true, "host": "sqlserver,1433", "username": "datadog", "password": "P@ssw0rd", "connector": "odbc", "driver": "ODBC Driver 18 for SQL Server", "dsn": "datadog"}]}}'
+      com.datadoghq.ad.checks: '{"sqlserver": {"instances": [{"dbm": true, "host": "sqlserver,1433", "username": "datadog", "password": "D@tad0gs", "connector": "odbc", "driver": "ODBC Driver 18 for SQL Server", "dsn": "datadog"}]}}'
+    ports:
+      - 1433:1433
   sqlserver-client:
     container_name: sqlserver-client
     image: mcr.microsoft.com/mssql/server:2022-latest
