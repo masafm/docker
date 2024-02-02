@@ -1,4 +1,4 @@
-CREATE LOGIN datadog WITH PASSWORD = 'D@tad0gs';
+CREATE LOGIN datadog WITH PASSWORD = 'Datad0gs';
 CREATE USER datadog FOR LOGIN datadog;
 GRANT CONNECT ANY DATABASE to datadog;
 GRANT VIEW SERVER STATE to datadog;
