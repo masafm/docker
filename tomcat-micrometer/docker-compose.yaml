@@ -14,11 +14,205 @@ services:
       DD_TRACE_DEBUG: "false"
     ports:
       - 9090:9090
-    # labels:
-    #   com.datadoghq.ad.checks: >-
-    #     {"tomcat": {"init_config": {"is_jmx": true, "collect_default_metrics": true, "new_gc_metrics": true}, "instances": [{"host": "tomcat-micrometer", "port": 9012}]}}
-    #   com.datadoghq.ad.logs: >-
-    #     [{"source": "java", "service": "tomcat"}]
+    labels:
+      com.datadoghq.ad.checks: >-
+        {"openmetrics": {
+        "init_config": {},
+        "instances": [{
+          "openmetrics_endpoint": "http://tomcat-micrometer:9090/actuator/prometheus",
+          "metrics": [
+          {
+          "application_ready_time_seconds": "micrometer.application.ready.time.seconds"
+          },
+          {
+          "application_started_time_seconds": "micrometer.application.started.time.seconds"
+          },
+          {
+          "disk_free_bytes": "micrometer.disk.free.bytes"
+          },
+          {
+          "disk_total_bytes": "micrometer.disk.total.bytes"
+          },
+          {
+          "executor_active_threads": "micrometer.executor.active.threads"
+          },
+          {
+          "executor_completed_tasks_total": "micrometer.executor.completed.tasks.total"
+          },
+          {
+          "executor_pool_core_threads": "micrometer.executor.pool.core.threads"
+          },
+          {
+          "executor_pool_max_threads": "micrometer.executor.pool.max.threads"
+          },
+          {
+          "executor_pool_size_threads": "micrometer.executor.pool.size.threads"
+          },
+          {
+          "executor_queue_remaining_tasks": "micrometer.executor.queue.remaining.tasks"
+          },
+          {
+          "executor_queued_tasks": "micrometer.executor.queued.tasks"
+          },
+          {
+          "jvm_buffer_count_buffers": "micrometer.jvm.buffer.count.buffers"
+          },
+          {
+          "jvm_buffer_memory_used_bytes": "micrometer.jvm.buffer.memory.used.bytes"
+          },
+          {
+          "jvm_buffer_total_capacity_bytes": "micrometer.jvm.buffer.total.capacity.bytes"
+          },
+          {
+          "jvm_classes_loaded_classes": "micrometer.jvm.classes.loaded.classes"
+          },
+          {
+          "jvm_classes_unloaded_classes_total": "micrometer.jvm.classes.unloaded.classes.total"
+          },
+          {
+          "jvm_compilation_time_ms_total": "micrometer.jvm.compilation.time.ms.total"
+          },
+          {
+          "jvm_gc_live_data_size_bytes": "micrometer.jvm.gc.live.data.size.bytes"
+          },
+          {
+          "jvm_gc_max_data_size_bytes": "micrometer.jvm.gc.max.data.size.bytes"
+          },
+          {
+          "jvm_gc_memory_allocated_bytes_total": "micrometer.jvm.gc.memory.allocated.bytes.total"
+          },
+          {
+          "jvm_gc_memory_promoted_bytes_total": "micrometer.jvm.gc.memory.promoted.bytes.total"
+          },
+          {
+          "jvm_gc_overhead_percent": "micrometer.jvm.gc.overhead.percent"
+          },
+          {
+          "jvm_gc_pause_seconds_count": "micrometer.jvm.gc.pause.seconds.count"
+          },
+          {
+          "jvm_gc_pause_seconds_max": "micrometer.jvm.gc.pause.seconds.max"
+          },
+          {
+          "jvm_gc_pause_seconds_sum": "micrometer.jvm.gc.pause.seconds.sum"
+          },
+          {
+          "jvm_info": "micrometer.jvm.info"
+          },
+          {
+          "jvm_memory_committed_bytes": "micrometer.jvm.memory.committed.bytes"
+          },
+          {
+          "jvm_memory_max_bytes": "micrometer.jvm.memory.max.bytes"
+          },
+          {
+          "jvm_memory_usage_after_gc_percent": "micrometer.jvm.memory.usage.after.gc.percent"
+          },
+          {
+          "jvm_memory_used_bytes": "micrometer.jvm.memory.used.bytes"
+          },
+          {
+          "jvm_threads_daemon_threads": "micrometer.jvm.threads.daemon.threads"
+          },
+          {
+          "jvm_threads_live_threads": "micrometer.jvm.threads.live.threads"
+          },
+          {
+          "jvm_threads_peak_threads": "micrometer.jvm.threads.peak.threads"
+          },
+          {
+          "jvm_threads_started_threads_total": "micrometer.jvm.threads.started.threads.total"
+          },
+          {
+          "jvm_threads_states_threads": "micrometer.jvm.threads.states.threads"
+          },
+          {
+          "logback_events_total": "micrometer.logback.events.total"
+          },
+          {
+          "process_cpu_usage": "micrometer.process.cpu.usage"
+          },
+          {
+          "process_files_max_files": "micrometer.process.files.max.files"
+          },
+          {
+          "process_files_open_files": "micrometer.process.files.open.files"
+          },
+          {
+          "process_start_time_seconds": "micrometer.process.start.time.seconds"
+          },
+          {
+          "process_uptime_seconds": "micrometer.process.uptime.seconds"
+          },
+          {
+          "system_cpu_count": "micrometer.system.cpu.count"
+          },
+          {
+          "system_cpu_usage": "micrometer.system.cpu.usage"
+          },
+          {
+          "system_load_average_1m": "micrometer.system.load.average.1m"
+          },
+          {
+          "tomcat_cache_access_total": "micrometer.tomcat.cache.access.total"
+          },
+          {
+          "tomcat_cache_hit_total": "micrometer.tomcat.cache.hit.total"
+          },
+          {
+          "tomcat_connections_config_max_connections": "micrometer.tomcat.connections.config.max.connections"
+          },
+          {
+          "tomcat_connections_current_connections": "micrometer.tomcat.connections.current.connections"
+          },
+          {
+          "tomcat_connections_keepalive_current_connections": "micrometer.tomcat.connections.keepalive.current.connections"
+          },
+          {
+          "tomcat_global_error_total": "micrometer.tomcat.global.error.total"
+          },
+          {
+          "tomcat_global_received_bytes_total": "micrometer.tomcat.global.received.bytes.total"
+          },
+          {
+          "tomcat_global_request_max_seconds": "micrometer.tomcat.global.request.max.seconds"
+          },
+          {
+          "tomcat_global_request_seconds_count": "micrometer.tomcat.global.request.seconds.count"
+          },
+          {
+          "tomcat_global_request_seconds_sum": "micrometer.tomcat.global.request.seconds.sum"
+          },
+          {
+          "tomcat_global_sent_bytes_total": "micrometer.tomcat.global.sent.bytes.total"
+          },
+          {
+          "tomcat_servlet_error_total": "micrometer.tomcat.servlet.error.total"
+          },
+          {
+          "tomcat_servlet_request_max_seconds": "micrometer.tomcat.servlet.request.max.seconds"
+          },
+          {
+          "tomcat_servlet_request_seconds_count": "micrometer.tomcat.servlet.request.seconds.count"
+          },
+          {
+          "tomcat_servlet_request_seconds_sum": "micrometer.tomcat.servlet.request.seconds.sum"
+          },
+          {
+          "tomcat_threads_busy_threads": "micrometer.tomcat.threads.busy.threads"
+          },
+          {
+          "tomcat_threads_config_max_threads": "micrometer.tomcat.threads.config.max.threads"
+          },
+          {
+          "tomcat_threads_current_threads": "micrometer.tomcat.threads.current.threads"
+          }
+          ],
+          "tag_by_endpoint": false
+          }
+          ]}}
+      com.datadoghq.ad.logs: >-
+        [{"source": "java", "service": "tomcat"}]
 
 networks:
   default:

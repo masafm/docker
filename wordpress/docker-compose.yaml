@@ -47,7 +47,7 @@ services:
       - ./mysql/my.cnf:/etc/my.cnf
       - db:/var/lib/mysql
     labels:
-      com.datadoghq.ad.checks: '{"mysql": {"instances": [{"dbm": "true", "host": "wordpress_db", "port": "3306", "username": "datadog", "password": "datadog", "reported_hostname": "aws-docker", "query_samples": {"collection_interval": "0.1"}}]}}'
+      com.datadoghq.ad.checks: '{"mysql": {"instances": [{"dbm": "true", "host": "wordpress_db", "port": "3306", "username": "datadog", "password": "datadog", "reported_hostname": "aws-docker", "query_samples": {"collection_interval": 0.1}}]}}'
 
 volumes:
   wordpress:
