@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  node:
+    container_name: node
+    build:
+      context: .
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/node:20240220
+    environment:
+      - DD_AGENT_HOST=datadog-agent
+      - DD_SERVICE=node
+      - DD_ENV=docker
+      - DD_VERSION=1.0
+    ports:
+      - 3000:3000
+
+networks:
+  default:
+    name: datadog
+    external: true
