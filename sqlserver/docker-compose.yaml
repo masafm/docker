@@ -7,7 +7,9 @@ services:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=P@ssw0rd
     labels:
-      com.datadoghq.ad.checks: '{"sqlserver": {"instances": [{"dbm": true, "host": "sqlserver,1433", "username": "datadog", "password": "Datad0gs", "connector": "odbc", "driver": "{ODBC Driver 18 for SQL Server}", "dsn": "datadog", "connection_string": "TrustServerCertificate=yes;"}]}}'
+      com.datadoghq.ad.checks: '{"sqlserver": {"instances": [{"dbm": true, "host": "sqlserver,1433", "username": "datadog", "password": "Datad0gs", "connector": "odbc", "driver": "FreeTDS", "connection_string": "TrustServerCertificate=yes;"}]}}'
+      #com.datadoghq.ad.checks: '{"sqlserver": {"instances": [{"dbm": true, "host": "sqlserver,1433", "username": "datadog", "password": "Datad0gs", "connector": "odbc", "dsn": "datadog", "connection_string": "TrustServerCertificate=yes;"}]}}'
+      #com.datadoghq.ad.checks: '{"sqlserver": {"instances": [{"dbm": true, "host": "sqlserver,1433", "username": "datadog", "password": "Datad0gs", "connector": "odbc", "driver": "ODBC Driver 18 for SQL Server", "connection_string": "TrustServerCertificate=yes;"}]}}'
     ports:
       - 1433:1433
   sqlserver-client:
