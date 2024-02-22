@@ -14,5 +14,6 @@ RUN ldconfig
 # Microsoft Sqlserver ODBC driver install
 RUN curl -o /msodbc.deb https://packages.microsoft.com/ubuntu/23.04/prod/pool/main/m/msodbcsql18/msodbcsql18_18.3.2.1-1_amd64.deb
 RUN ACCEPT_EULA=Y apt install -y /msodbc.deb && rm -f /msodbc.deb
-RUN cp /opt/microsoft/msodbcsql18/etc/odbcinst.ini /opt/datadog-agent/embedded/lib/python3.9/site-packages/datadog_checks/sqlserver/data/driver_config/
-COPY sqlserver/odbc.ini /opt/datadog-agent/embedded/lib/python3.9/site-packages/datadog_checks/sqlserver/data/driver_config/
+RUN cat /opt/microsoft/msodbcsql18/etc/odbcinst.ini >>$(find /opt/datadog-agent/embedded/ -name odbcinst.ini)
+COPY sqlserver/odbc.ini /
+RUN mv /odbc.ini $(dirname `find /opt/datadog-agent/embedded/ -name odbcinst.ini`)
