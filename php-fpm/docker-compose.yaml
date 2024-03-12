@@ -2,7 +2,7 @@ version: '3.7'
 services:
   nginx:
     container_name: nginx
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20240118
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20240312
     build:
       context: nginx
       args:
@@ -21,7 +21,7 @@ services:
       com.datadoghq.ad.checks: '{"nginx": {"instances": [{"nginx_status_url": "http://nginx:81/nginx_status/"}]}}'
   php-fpm:
     container_name: php-fpm
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:20240118
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:20240312
     build:
       context: .
       args:
