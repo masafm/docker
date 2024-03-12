@@ -1,0 +1,9 @@
+logs:
+  - type: tcp
+    port: 10518
+    service: your-service
+    source: your-source
+  - type: tcp
+    port: 10519
+    service: your-service2
+    source: your-source2
