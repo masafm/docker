@@ -2,11 +2,11 @@ version: '3.7'
 services:
   nginx:
     container_name: nginx
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20240312
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/nginx:20240813
     build:
       context: nginx
       args:
-        image: nginx:1.25.2-alpine
+        image: nginx:1.27.0-alpine
       dockerfile: Dockerfile
     ports:
       - 81:81
@@ -17,6 +17,7 @@ services:
       - DD_SERVICE=nginx
       - DD_ENV=docker
       - DD_VERSION=1.0
+      - DD_TRACE_DEBUG=true
     labels:
       com.datadoghq.ad.checks: '{"nginx": {"instances": [{"nginx_status_url": "http://nginx:81/nginx_status/"}]}}'
   php-fpm:
@@ -34,6 +35,8 @@ services:
       - DD_SERVICE=php-fpm
       - DD_ENV=docker
       - DD_VERSION=1.0
+      - DD_TRACE_DEBUG=true
+#      - DD_INSTRUMENTATION_TELEMETRY_ENABLED=0
     volumes:
       - ./src:/usr/share/nginx/html/
 
