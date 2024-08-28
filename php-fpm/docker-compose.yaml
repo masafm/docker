@@ -41,7 +41,7 @@ services:
     volumes:
       - ./src:/usr/share/nginx/html/
     labels:
-      com.datadoghq.ad.checks: '{"php_fpm": {"instances": [{"status_url": "http://nginx/phpfpm_status/"}]}}'
+      com.datadoghq.ad.checks: '{"php_fpm": {"instances": [{"status_url": "http://nginx/phpfpm_status"}]}}'
 
 networks:
   default:
