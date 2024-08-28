@@ -7,8 +7,8 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - AB_TARGET=http://nginx/
-      - AB_CONCURRENCY=4
+      - AB_TARGET=http://nginx/info.php
+      - AB_CONCURRENCY=30
       - AB_REQUESTS=10000
       
 networks:

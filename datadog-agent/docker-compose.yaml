@@ -14,7 +14,7 @@ services:
       - 18126:8126/tcp
     environment:
       - DD_API_KEY
-      - DD_HOSTNAME=aws-docker
+#      - DD_HOSTNAME=aws-docker
       - DD_APM_ENABLED=true
       - DD_APM_NON_LOCAL_TRAFFIC=true
       - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true

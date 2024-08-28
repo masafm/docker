@@ -1,4 +1,3 @@
-version: '3.7'
 services:
   nginx:
     container_name: nginx
@@ -10,35 +9,39 @@ services:
       dockerfile: Dockerfile
     ports:
       - 81:81
-      - 82:80
+      - 80:80
     environment:
       - PHP_FPM_ADDR=php-fpm:9000
       - DD_AGENT_HOST=datadog-agent
-      - DD_SERVICE=nginx
+      - DD_SERVICE=nginx-1798623
       - DD_ENV=docker
       - DD_VERSION=1.0
-      - DD_TRACE_DEBUG=true
+#      - DD_TRACE_DEBUG=true
+    volumes:
+      - /tmp/php-fpm/logs:/var/log/php-fpm/
     labels:
       com.datadoghq.ad.checks: '{"nginx": {"instances": [{"nginx_status_url": "http://nginx:81/nginx_status/"}]}}'
   php-fpm:
     container_name: php-fpm
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:20240312
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/php-fpm:20240828
     build:
       context: .
       args:
-        image: php:8.1.23-fpm-bullseye
+        image: php:8.2.8-fpm-bullseye
       dockerfile: Dockerfile
     environment:
       - CURL_TARGET_URL=http://wordpress/
       - CURL_COUNT=1
       - DD_AGENT_HOST=datadog-agent
-      - DD_SERVICE=php-fpm
+      - DD_SERVICE=php-fpm-1798623
       - DD_ENV=docker
       - DD_VERSION=1.0
-      - DD_TRACE_DEBUG=true
+#      - DD_TRACE_DEBUG=true
 #      - DD_INSTRUMENTATION_TELEMETRY_ENABLED=0
     volumes:
       - ./src:/usr/share/nginx/html/
+    labels:
+      com.datadoghq.ad.checks: '{"php_fpm": {"instances": [{"status_url": "http://nginx/phpfpm_status/"}]}}'
 
 networks:
   default:
