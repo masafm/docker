@@ -1,3 +1,5 @@
 *~
 .DS_Store
 synthetics-pl*
+*.jar
+otel-http-micrometer/*/target/
