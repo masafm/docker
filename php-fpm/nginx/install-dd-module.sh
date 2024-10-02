@@ -4,10 +4,13 @@ get_latest_release() {
   curl --silent "https://api.github.com/repos/$1/releases/latest" | jq --raw-output .tag_name
 }
 BASE_IMAGE=$1
-BASE_IMAGE_WITHOUT_COLONS=$(echo "$BASE_IMAGE" | tr ':' '_')
+BASE_IMAGE_VERSION=$(echo "$BASE_IMAGE" | sed -e 's/.*://' -e 's/-.*//')
 RELEASE_TAG=$(get_latest_release DataDog/nginx-datadog)
-#tarball="$BASE_IMAGE_WITHOUT_COLONS-amd64-ngx_http_datadog_module.so.tgz"
-tarball="ngx_http_datadog_module-amd64-1.27.0.so.tgz"
+ARCH=$(uname -m)
+if [[ $ARCH == "aarch64" ]];then
+   ARCH=arm64
+fi
+tarball="ngx_http_datadog_module-${ARCH}-${BASE_IMAGE_VERSION}.so.tgz"
 wget "https://github.com/DataDog/nginx-datadog/releases/download/$RELEASE_TAG/$tarball"
 tar -xzf "$tarball" -C /usr/lib/nginx/modules
 rm "$tarball"

@@ -3,10 +3,10 @@ services:
   datadog-agent:
     container_name: datadog-agent
     # image: datadog/agent:latest
-    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/datadog-agent:7.55.3-jmx-20240819
+    image: public.ecr.aws/b1o7r7e0/masafumi.kashiwagi/datadog-agent:7.57.1-jmx-20241002
     build:
       args:
-        image: datadog/agent:7.55.3-jmx
+        image: datadog/agent:7.57.1-jmx
       context: .
       dockerfile: Dockerfile
     ports:
