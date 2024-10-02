@@ -39,6 +39,8 @@ services:
 #      - DD_INSTRUMENTATION_TELEMETRY_ENABLED=0
     volumes:
       - ./src:/usr/share/nginx/html/
+    labels:
+      com.datadoghq.ad.checks: '{"php_fpm": {"instances": [{"status_url": "http://nginx/status", "ping_url": "http://nginx/ping", "ping_reply": "pong"}]}}'
 
 networks:
   default:
