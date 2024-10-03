@@ -43,7 +43,8 @@ services:
       - CHOWN
     security_opt:
       - apparmor:unconfined
-
+    entrypoint: /bin/bash -c 'export DD_HOSTNAME=docker-$(hostname) && exec /bin/entrypoint.sh'
+    
 networks:
   default:
     name: datadog
