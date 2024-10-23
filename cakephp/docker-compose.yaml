@@ -1,0 +1,12 @@
+version: '3'
+services:
+  cakephp:
+    build: .
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./test_env.php:/var/www/html/cakephp5/test_env.php
+    environment:
+      - DD_AGENT_HOST=datadog-agent
+      - DD_TRACE_DEBUG=true
+      
