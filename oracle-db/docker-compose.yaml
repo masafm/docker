@@ -5,8 +5,10 @@ services:
     image: container-registry.oracle.com/database/express:21.3.0-xe
     environment:
       - ORACLE_PWD=password
+      - DD_ENV=masafumi_kashiwagi
+      - DD_TAGS=team:masafumi env2:docker
     labels:
-      com.datadoghq.ad.checks: '{"oracle": {"instances": [{"server": "oracle-db:1521", "service_name": "XE", "username": "datadog", "password": "datadog", "empty_default_hostname": true, "tags": ["host:oracle-db"]}]}}'
+      com.datadoghq.ad.checks: '{"oracle": {"instances": [{"dbm": true, "server": "oracle-db:1521", "service_name": "XE", "username": "datadog", "password": "datadog"}]}}'
     volumes:
       - ./startup_script:/opt/oracle/scripts/startup
       

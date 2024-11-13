@@ -16,6 +16,9 @@ services:
       - /bin/sh
       - -c
       - snmpsimd.py --agent-udpv4-endpoint=0.0.0.0:161 --process-user=snmpsim --process-group=nogroup 2>&1
+    labels:
+      com.datadoghq.ad.logs: >-
+        [{"env": "masafumi_kashiwagi", "env2": "docker", "team": "masafumi"}]
 #    logging:
 #      driver: "syslog"
 #      options:

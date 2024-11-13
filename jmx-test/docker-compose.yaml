@@ -9,8 +9,9 @@ services:
       - TARGET_URL=http://tomcat:8080/sb
       - DD_AGENT_HOST=datadog-agent
       - DD_SERVICE=jmx-test
-      - DD_ENV=docker
+      - DD_ENV=masafumi_kashiwagi
       - DD_VERSION=1.0
+      - DD_TAGS=env2:docker
     labels:
       com.datadoghq.ad.logs: >-
         [{"source": "java", "service": "jmx-test"}]

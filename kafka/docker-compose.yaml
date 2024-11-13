@@ -9,6 +9,8 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      DD_ENV: masafumi_kashiwagi
+      DD_TAGS: team:masafumi env2:docker
     ports:
       - 9092:9092
     depends_on:
@@ -21,6 +23,8 @@ services:
     container_name: kafka-producer
     environment:
       KAFKA_ADDR: kafka:9092
+      DD_ENV: masafumi_kashiwagi
+      DD_TAGS: team:masafumi env2:docker
     depends_on:
       - kafka
     command:

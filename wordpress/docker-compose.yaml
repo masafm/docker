@@ -19,9 +19,10 @@ services:
       WORDPRESS_DB_NAME: wordpress
       DD_AGENT_HOST: datadog-agent
       DD_SERVICE: wordpress
-      DD_ENV: docker
+      DD_ENV: masafumi_kashiwagi
       DD_VERSION: 2.0
       DD_DBM_PROPAGATION_MODE: full
+      DD_TAGS: team:masafumi env2:docker
     volumes:
       - ./wordpress/status.conf:/etc/apache2/mods-available/status.conf
       - wordpress:/var/www/html
@@ -42,6 +43,8 @@ services:
       MYSQL_PASSWORD: wordpress
       # MYSQL_RANDOM_ROOT_PASSWORD: '1'
       MYSQL_ALLOW_EMPTY_PASSWORD: '1'
+      DD_ENV: masafumi_kashiwagi
+      DD_TAGS: team:masafumi env2:docker
     volumes:
       - ./mysql/default.sql:/docker-entrypoint-initdb.d/default.sql
       - ./mysql/my.cnf:/etc/my.cnf

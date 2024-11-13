@@ -11,6 +11,8 @@ services:
     environment:
       # Set environment variables as needed
       - JAVA_OPTIONS=-Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=9090 -Dcom.sun.management.jmxremote.authenticate=false -Djavax.management.builder.initial=weblogic.management.jmx.mbeanserver.WLSMBeanServerBuilder
+      - DD_ENV=masafumi_kashiwagi
+      - DD_TAGS=team:masafumi env2:docker
     container_name: weblogic
 
 networks:

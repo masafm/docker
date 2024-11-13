@@ -24,6 +24,9 @@ services:
       - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
       - DD_PROCESS_AGENT_ENABLED=true
       - DD_SYSTEM_PROBE_NETWORK_ENABLED=true
+      - DD_ENV=masafumi_kashiwagi
+      - DD_APM_ENV=masafumi_kashiwagi
+      - DD_TAGS=team:masafumi env2:docker
 #      - DD_IGNORE_AUTOCONF=apache
     volumes:
 #      - /opt/datadog/apm:/opt/datadog/apm

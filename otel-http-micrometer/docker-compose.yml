@@ -13,10 +13,11 @@ services:
       - HTTPSERVICE2_ENDPOINT=http://httpservice2:8081
       - MANAGEMENT_OTLP_TRACING_ENDPOINT=http://jaeger:4318/v1/traces
       - DD_SERVICE=httpservice1
-      - DD_ENV=docker
+      - DD_ENV=masafumi_kashiwagi
       - DD_VERSION=1.0
       - DD_AGENT_HOST=datadog-agent
       - DD_TRACE_DEBUG=true
+      - DD_TAGS=team:masafumi env2:docker
       #- DD_TRACE_PROPAGATION_STYLE=datadog
 
   httpservice2:
@@ -30,10 +31,11 @@ services:
     environment:
       - MANAGEMENT_OTLP_TRACING_ENDPOINT=http://jaeger:4318/v1/traces
       - DD_SERVICE=httpservice2
-      - DD_ENV=docker
+      - DD_ENV=masafumi_kashiwagi
       - DD_VERSION=1.0
       - DD_AGENT_HOST=datadog-agent
       - DD_TRACE_DEBUG=true
+      - DD_TAGS=team:masafumi env2:docker
       #- DD_TRACE_PROPAGATION_STYLE=datadog
 
   jaeger:

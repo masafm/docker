@@ -7,5 +7,8 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
+    environment:
+      - DD_ENV=masafumi_kashiwagi
+      - DD_TAGS=team:masafumi env2:docker
 volumes:
   jenkins_home:

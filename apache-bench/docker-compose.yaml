@@ -10,6 +10,8 @@ services:
       - AB_TARGET=http://nginx/
       - AB_CONCURRENCY=4
       - AB_REQUESTS=10000
+      - DD_ENV=masafumi_kashiwagi
+      - DD_TAGS=team:masafumi env2:docker
       
 networks:
   default:

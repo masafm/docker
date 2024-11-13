@@ -9,9 +9,10 @@ services:
       TARGET_URL: http://nginx/
       DD_AGENT_HOST: datadog-agent
       DD_SERVICE: tomcat-micrometer
-      DD_ENV: docker
       DD_VERSION: 2.0
       DD_TRACE_DEBUG: "false"
+      DD_ENV: masafumi_kashiwagi
+      DD_TAGS: team:masafumi env2:docker
     ports:
       - 9090:9090
     labels:
